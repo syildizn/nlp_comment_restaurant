@@ -59,3 +59,22 @@ model.fit(X_train, y_train)
 # Modeli test etme ve performansı değerlendirme
 predictions = model.predict(X_test)
 print(classification_report(y_test, predictions))
+
+
+print("---------------------------------------")
+
+def custom_input_prediction(input_text):
+    # Girdiyi işleme
+    processed_input = preprocess_text(input_text)
+
+    # Girdiyi TF-IDF vektörüne dönüştürme
+    tfidf_input = tfidf.transform([processed_input]).toarray()
+
+    # Model ile tahmin yapma
+    prediction = model.predict(tfidf_input)
+    return "Olumlu" if prediction[0] == 1 else "Olumsuz"
+
+# Kullanıcıdan girdi alınması ve tahmin yapılması
+for i in range(3):
+    custom_review = input("Bir yorum girin: ")
+    print("Tahmin: ", custom_input_prediction(custom_review))
