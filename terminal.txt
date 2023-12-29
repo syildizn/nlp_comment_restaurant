@@ -1,6 +1,6 @@
-TERMİNAL ÇIKTISI:
+                        ÇIKTI:
 
-syildizn@Seckin-MacBook-Air nlp_restaurant % /usr/local/bin/python3 /Users/syildizn/Desktop/nlp_restaurant/main.py
+
 [nltk_data] Downloading package stopwords to
 [nltk_data]     /Users/syildizn/nltk_data...
 [nltk_data]   Package stopwords is already up-to-date!
@@ -26,4 +26,3 @@ syildizn@Seckin-MacBook-Air nlp_restaurant % /usr/local/bin/python3 /Users/syild
    macro avg       0.75      0.75      0.75       200
 weighted avg       0.75      0.75      0.75       200
 
-syildizn@Seckin-MacBook-Air nlp_restaurant % 
