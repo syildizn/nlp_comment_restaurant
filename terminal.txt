@@ -26,3 +26,11 @@
    macro avg       0.75      0.75      0.75       200
 weighted avg       0.75      0.75      0.75       200
 
+Bir yorum girin: This place is really lovely and food tastes so good. 
+Tahmin:  Olumlu
+Bir yorum girin: the waiters in this restaurant are very rude
+Tahmin:  Olumsuz
+Bir yorum girin: food is too expensive and tastes bad
+Tahmin:  Olumsuz
+Bir yorum girin: this restaurant is in very good location and very cool            
+Tahmin:  Olumlu
