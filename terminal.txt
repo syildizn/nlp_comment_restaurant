@@ -1,0 +1,29 @@
+TERMİNAL ÇIKTISI:
+
+syildizn@Seckin-MacBook-Air nlp_restaurant % /usr/local/bin/python3 /Users/syildizn/Desktop/nlp_restaurant/main.py
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /Users/syildizn/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+                                              Review  Liked
+0                           Wow... Loved this place.      1
+1                                 Crust is not good.      0
+2          Not tasty and the texture was just nasty.      0
+3  Stopped by during the late May bank holiday of...      1
+4  The selection on the menu was great and so wer...      1
+---------------------------------
+                                              Review  Liked                                   Processed_Review
+0                           Wow... Loved this place.      1                                     wow love place
+1                                 Crust is not good.      0                                         crust good
+2          Not tasty and the texture was just nasty.      0                                 tasti textur nasti
+3  Stopped by during the late May bank holiday of...      1  stop late may bank holiday rick steve recommen...
+4  The selection on the menu was great and so wer...      1                            select menu great price
+              precision    recall  f1-score   support
+
+           0       0.73      0.77      0.75        96
+           1       0.78      0.73      0.75       104
+
+    accuracy                           0.75       200
+   macro avg       0.75      0.75      0.75       200
+weighted avg       0.75      0.75      0.75       200
+
+syildizn@Seckin-MacBook-Air nlp_restaurant % 
