@@ -14,7 +14,8 @@ from sklearn.metrics import classification_report
 
 
 # Veri setini yükleme
-data_path = '/Users/syildizn/Desktop/nlp_restaurant/Restaurant_Reviews.tsv'
+#data_path = '/Users/syildizn/Desktop/nlp_restaurant/Restaurant_Reviews.tsv'
+data_path = 'C:\GitHub\denemetemplate\enlp_comment_restaurant\Restaurant_Reviews.tsv'
 reviews_df = pd.read_csv(data_path, delimiter='\t', quoting=3)  # TSV dosyası olduğu için delimiter olarak '\t' kullanılıyor.
 
 # İlk beş satırı gösterme
