@@ -1,4 +1,3 @@
-
 import pandas as pd
 import nltk
 nltk.download('stopwords')
@@ -8,8 +7,12 @@ import re
 import string
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import MultinomialNB # Naive Bayes classifier
 from sklearn.metrics import classification_report
+from sklearn.svm import SVC  # SVM classifier
+from sklearn.ensemble import RandomForestClassifier # Random Forest classifier
+from sklearn.linear_model import LogisticRegression # Logistic Regression classifier
+from sklearn.ensemble import GradientBoostingClassifier # Gradient Boosting classifier
 
 
 
@@ -54,14 +57,46 @@ y = reviews_df['Liked'].values
 # Veri setini eğitim ve test setlerine ayırma
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Model oluşturma ve eğitme
+# Model oluşturma ve eğitme naivebayes
 model = MultinomialNB()
 model.fit(X_train, y_train)
+# Model oluşturma ve eğitme SVM
+svm_model = SVC(kernel='linear')
+svm_model.fit(X_train, y_train)
+# Model oluşturma ve eğitme Random Forest
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+# Model oluşturma ve eğitme Logistic Regression
+logreg_model = LogisticRegression()
+logreg_model.fit(X_train, y_train)
+# Model oluşturma ve eğitme Gradient Boosting
+gb_model = GradientBoostingClassifier(n_estimators=100, random_state=42)
+gb_model.fit(X_train, y_train)
 
-# Modeli test etme ve performansı değerlendirme
+# Modeli test etme ve performansı değerlendirme naivebayes
 predictions = model.predict(X_test)
+print("-----------------Naive Bayes------------")
 print(classification_report(y_test, predictions))
 
+# Modeli test etme ve performansı değerlendirme SVM
+svm_predictions = svm_model.predict(X_test)
+print("----------------- SVM ------------")
+print(classification_report(y_test, svm_predictions))
+
+# Modeli test etme ve performansı değerlendirme RandomForest
+rf_predictions = rf_model.predict(X_test)
+print("----------------- Random Forest ------------")
+print(classification_report(y_test, rf_predictions))
+
+# Modeli test etme ve performansı değerlendirme Logistic Regression
+logreg_predictions = logreg_model.predict(X_test)
+print("----------------- Logistic Regression ------------")
+print(classification_report(y_test, logreg_predictions))
+
+# Modeli test etme ve performansı değerlendirme Gradient Boosting
+gb_predictions = gb_model.predict(X_test)
+print("----------------- Gradient Boosting ------------")
+print(classification_report(y_test, gb_predictions))
 
 print("---------------------------------------")
 
@@ -72,11 +107,36 @@ def custom_input_prediction(input_text):
     # Girdiyi TF-IDF vektörüne dönüştürme
     tfidf_input = tfidf.transform([processed_input]).toarray()
 
-    # Model ile tahmin yapma
-    prediction = model.predict(tfidf_input)
-    return "Olumlu" if prediction[0] == 1 else "Olumsuz"
+    # Model ile tahmin yapma Naive Bayes
+    prediction_nb = model.predict(tfidf_input)
+    # return "Olumlu" if prediction[0] == 1 else "Olumsuz"
+    # Model ile tahmin yapma SVM
+    prediction_svm = svm_model.predict(tfidf_input)
+    # return "Olumlu" if predictionSvm[0] == 1 else "Olumsuz"
+    # Model ile tahmin yapma Random Forest
+    prediction_rf = rf_model.predict(tfidf_input)
+    # Model ile tahmin yapma Logistic Regression
+    prediction_logreg = logreg_model.predict(tfidf_input)
+    # Model ile tahmin yapma Gradient Boosting
+    prediction_gb = gb_model.predict(tfidf_input)
+
+    return {
+        "Naive Bayes": "Olumlu" if prediction_nb[0] == 1 else "Olumsuz",
+        "SVM": "Olumlu" if prediction_svm[0] == 1 else "Olumsuz",
+        "Random Forest": "Olumlu" if prediction_rf[0] == 1 else "Olumsuz",
+        "Logistic Regression": "Olumlu" if prediction_logreg[0] == 1 else "Olumsuz",
+        "Gradient Boosting": "Olumlu" if prediction_gb[0] == 1 else "Olumsuz"
+    }
 
 # Kullanıcıdan girdi alınması ve tahmin yapılması
 for i in range(3):
     custom_review = input("Bir yorum girin: ")
-    print("Tahmin: ", custom_input_prediction(custom_review))
+    """
+    nb_prediction, svm_prediction = custom_input_prediction(custom_review)
+    #print("Tahmin: ", custom_input_prediction(custom_review))
+    print("Naive Bayes Tahmin: ", nb_prediction)
+    print("SVM Tahmin: ", svm_prediction)
+    """
+    predictions = custom_input_prediction(custom_review)
+    for model_name, prediction in predictions.items():
+        print(f"{model_name} Tahmin: {prediction}")
